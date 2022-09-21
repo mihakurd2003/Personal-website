@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>Password Generator</h1>
+        <form action="password">
+            <label> Choose the length password:
+                <select name="length">
+                    {% for len in password_length %}
+                        <option value="{{ len }}">{{ len }}</option>
+                        {% if len == 8 %}
+                            <option value="{{ len }}" selected="selected">{{ len }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </label><br>
+
+            <br>
+                <input type="checkbox" name="uppercase"> Uppercase
+            <br>
+            <br>
+                <input type="checkbox" name="numbers"> Numbers
+            <br>
+            <br>
+                <input type="checkbox" name="special_char"> Special char
+            <br>
+            <input type="submit" value="Generate Password" class="btn btn-secondary fw-bold border-dark bg-dark">
+        </form>
+    </div>
+{% endblock %}

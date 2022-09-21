@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="text-center text-break">
+        <h2 id="blogdetailtitle" class="mt-5">{{ post.title }}</h2>
+        <p class="text-muted mb-5">---{{ post.date|date:'F jS Y' }}---</p>
+        <p class="text-body">{{ post.description }}</p>
+        <a href="{% url "blog:all_blogs" %}" class="btn btn-primary">Back</a>
+    </div>
+{% endblock %}

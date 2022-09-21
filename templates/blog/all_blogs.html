@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+        <h1 id="blog-title" class="font-weight-bold text-center">My blog</h1>
+        <h3 class="text-center mb-5">There is {{ blogs.count }} post{{ blogs.count|pluralize }}</h3>
+        <div class="text-center img-fluid mb-2"><img src="{% static 'Slipknot.jpg' %}" width="240" height="160"></div><br>
+        <div class="text-break text-center">
+            {% for blog in posts.object_list %}
+                <div class="row justify-content-center my-3">
+                    <div class="col-md-10">
+                        <a href="{% url "blog:details" blog.id %}" style="text-decoration:none">
+                            <h2 class="btn-outline-info">{{ blog.title }}</h2>
+                        </a>
+                        <h5 class="text-muted">{{ blog.date|date:'d M, Y' }}</h5>
+                        <h4>{{ blog.description|striptags|truncatechars:150 }}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if posts.has_other_pages %}
+            <div class="pagination justify-content-end">
+                <span class="step-links">
+                    {% if posts.has_previous %}
+                        <a href=?page={{ posts.previous_page_number }}"
+                           style="text-decoration:none">&lt&lt&lt</a>
+                    {% endif %}
+                    <span>
+                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                    </span>
+                    {% if posts.has_next %}
+                        <a role="button" href="?page={{ posts.next_page_number }}"
+                           style="text-decoration:none">&gt&gt&gt</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+{% endblock %}
