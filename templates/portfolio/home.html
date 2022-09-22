@@ -18,7 +18,7 @@
     <h2 class="mt-5">Portfolio:)</h2>
     <hr>
     <div class="row">
-        {% for project in projects %}
+        {% for project in projects.all %}
             <div class="col-lg-4 col-md-6">
                 {% if project.url %}
                     <a href="{{ project.url }}" target="_blank">
