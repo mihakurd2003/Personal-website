@@ -9,7 +9,7 @@ def all_blogs(request):
 
     paginator = Paginator(blogs, 2)  # По 3 статьи на каждой странице
     try:
-        page = request.GET.get('page')  # извлекаем из запроса GET-параметр page, который указывает текущую страницу
+        page = request.GET.get('page')  # извлекаем из запроса GET-параметр page,который указывает текущую страницу
     except:
         page = 1
         raise Exception
